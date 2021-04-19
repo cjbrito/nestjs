@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  demo:
+    image: demo
+    restart: on-failure
+    working_dir: /home/node/demo
+    volumes:
+      - ./:/home/node/demo
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    command: "npm start"
+    links:
+      - "db"
+    depends_on:
+      - db
+    environment:
+      MYSQL_ROOT_PASSWORD: root.
+      MYSQL_DATABASE: 'crud'
+
+
+  db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: crud
+    volumes: 
+      - ~/docker/mysql-data:/var/lib/mysql
+
+
+ 
+    
