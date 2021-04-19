@@ -33,8 +33,8 @@ $ npm install
 ```
 
 ## Docker y Docker-compose
-## Into root project folder execute 
-## For Build Nestjs App Container
+Into root project folder execute For Build Nestjs App Container
+
 $ docker build -t demo . 
 
 ## For create pods with Mysql into docker Network
