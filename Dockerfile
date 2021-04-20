@@ -1,5 +1,5 @@
-FROM node:14
-WORKDIR /demo
+FROM node:14 AS Development
+WORKDIR /home/demo
 COPY ./package.json ./
 RUN npm install
 COPY . .

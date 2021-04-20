@@ -3,15 +3,22 @@ version: '3'
 services:
   demo:
     image: demo
+    container_name: demo
+    image: demo:1.0.0
+    build:
+        context: .
+        target: development
+        dockerfile: ./Dockerfile
+    command: npm run start:debug
     restart: on-failure
-    working_dir: /home/node/demo
+    working_dir: /home/demo
     volumes:
-      - ./:/home/node/demo
+      - ./:/home/demo
+      - /home/demo/node_modules
     ports:
       - "3000:3000"
     expose:
       - "3000"
-    command: "npm start"
     links:
       - "db"
     depends_on:
@@ -32,7 +39,3 @@ services:
       MYSQL_DATABASE: crud
     volumes: 
       - ~/docker/mysql-data:/var/lib/mysql
-
-
- 
-    
